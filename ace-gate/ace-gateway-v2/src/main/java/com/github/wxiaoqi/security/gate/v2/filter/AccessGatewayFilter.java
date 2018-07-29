@@ -80,7 +80,7 @@ public class AccessGatewayFilter implements GlobalFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange serverWebExchange, GatewayFilterChain gatewayFilterChain) {
-        log.info("check token and user permission....");
+        // log.info("check token and user permission....");
         LinkedHashSet requiredAttribute = serverWebExchange.getRequiredAttribute(ServerWebExchangeUtils.GATEWAY_ORIGINAL_REQUEST_URL_ATTR);
         ServerHttpRequest request = serverWebExchange.getRequest();
         String requestUri = request.getPath().pathWithinApplication().value();
@@ -105,7 +105,7 @@ public class AccessGatewayFilter implements GlobalFilter {
         try {
             user = getJWTUser(request, mutate);
         } catch (Exception e) {
-            log.error("用户Token过期异常", e);
+            // log.error("用户Token过期异常", e);
             return getVoidMono(serverWebExchange, new TokenForbiddenResponse("User Token Forbidden or Expired!"));
         }
         List<PermissionInfo> permissionIfs = userService.getAllPermissionInfo();

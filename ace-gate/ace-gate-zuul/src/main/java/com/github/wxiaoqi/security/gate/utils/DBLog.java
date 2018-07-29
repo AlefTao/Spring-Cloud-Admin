@@ -47,7 +47,7 @@ public class DBLog extends Thread {
         try {
             logInfoQueue.offer(logInfo);
         } catch (Exception e) {
-            log.error("日志写入失败", e);
+            // log.error("日志写入失败", e);
         }
     }
 

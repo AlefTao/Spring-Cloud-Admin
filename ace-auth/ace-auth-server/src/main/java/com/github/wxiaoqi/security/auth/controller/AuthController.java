@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +27,7 @@ public class AuthController {
     @RequestMapping(value = "token", method = RequestMethod.POST)
     public ObjectRestResponse<String> createAuthenticationToken(
             @RequestBody JwtAuthenticationRequest authenticationRequest) throws Exception {
-        log.info(authenticationRequest.getUsername()+" require logging...");
+        // log.info(authenticationRequest.getUsername()+" require logging...");
         final String token = authService.login(authenticationRequest);
         return new ObjectRestResponse<>().data(token);
     }
